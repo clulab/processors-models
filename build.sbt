@@ -32,6 +32,10 @@ publishArtifact in (Test, packageBin) := false
 // publish to a maven repo
 publishMavenStyle := true
 
+// allow overwriting of versions, in case we mess up a release
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+
 publishTo := {
   val artifactory = "http://artifactory.cs.arizona.edu:8081/artifactory/"
   val repository = "sbt-release-local"
