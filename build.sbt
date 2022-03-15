@@ -16,7 +16,20 @@ mappings in (Compile, packageBin) ++= Seq(
   file("./LICENSE") -> "LICENSE"
 )
 
-resolvers += "Artifactory" at "http://artifactory.cs.arizona.edu:8081/artifactory/sbt-release"
+ThisBuild / publishTo := {
+  if (BuildUtils.useArtifactory) {
+    val artifactory = "http://artifactory.cs.arizona.edu:8081/artifactory/"
+    val repository = "sbt-release-local"
+    val details =
+        if (isSnapshot.value) ";build.timestamp=" + new java.util.Date().getTime
+        else ""
+    val location = artifactory + repository + details
+
+    Some(("Artifactory Realm" at location).withAllowInsecureProtocol(true))
+  }
+}
+
+//resolvers += ("Artifactory" at "http://artifactory.cs.arizona.edu:8081/artifactory/sbt-release").withAllowInsecureProtocol(true)
 
 //
 // publishing settings
