@@ -1,4 +1,5 @@
 # Changes
+* **0.2.4** - Improved model for case restoration
 * **0.2.3** - Added a first model for case restoration
 * **0.2.2** - New model for dependency label that includes 4 x negative examples
 * **0.2.1** - New model for dependency label that includes negative examples
